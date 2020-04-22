@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Join Poll</title>
+  </head>
+  <body>
+    <h2>Enter the Room Code</h2>
+    <script>
+      function validateForm() {
+        let code = document.getElementById("roomCode").value;
+        if (code == "") {
+          alert("Please Enter a Room Code Before Continuing");
+          return false;
+        }
+        fetch('/room/'+code).then(function(response) {
+          return response.text();
+        }).then(function(data) {
+          if (data === 'false') {
+            alert("Please Enter a Valid Room Code");
+            return false;
+          } else {
+            window.location.href='/answering/'+code;
+          }
+        })
+      }
+    </script>
+    <input type="text" id="roomCode" name="roomCode">
+    <button onclick="validateForm()">Submit </button>
+  </body>
+</html>
