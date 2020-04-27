@@ -6,7 +6,7 @@
   <body>
     <h2>Waiting for Questions...</h2>
     <script>
-        var source = new EventSource("{{ url_for('sse.stream') }}");
+        var source = new EventSource("{{ url_for('sse.stream', channel=roomCode) }}");
         source.addEventListener('greeting', function(event) {
             var data = JSON.parse(event.data);
             alert("The server says " + data.message);

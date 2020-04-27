@@ -36,7 +36,8 @@ def check_for_room(code):
 def answer_page(roomCode):
     return render_template("answering.html", roomCode=roomCode)
 
-@app.route('/hello')
+@app.route('/ping', methods=['POST'])
 def publish_hello():
-    sse.publish({"message": "Hello!"}, type='greeting')
+    data = request.get_json()
+    sse.publish({"message": "Hello!"}, type='greeting', channel=data.get("code"))
     return "Message sent!"

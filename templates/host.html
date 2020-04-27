@@ -6,6 +6,27 @@
   <body>
     <h2>The Room Code is: {{ data.code }}</h2>
     <h4>Host IP: {{ data.host }}</h4>
-    <button onclick="fetch('/hello')">Ping connected</button>
+    <script>
+      var code = '{{ data.code }}'
+      function ping() {
+        fetch('/ping', 
+        {
+          headers: {'Content-Type': 'application/json; charset=UTF-8'},
+          body: JSON.stringify({code: code}),
+          method: 'POST',
+        })
+      }
+      function endSession() {
+        fetch('/end', 
+        {
+          headers: {"content-type": "application/json; charset=UTF-8"},
+          body: {code: code},
+          method: "POST",
+        }).then(response => {return response.json()})
+        .then(data => console.log(data));
+      }
+    </script>
+    <button onclick="ping()">Ping connected</button>
+    <button onclick="endSession()">End Session</button>
   </body>
 </html>
