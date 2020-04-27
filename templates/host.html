@@ -2,6 +2,46 @@
 <html>
   <head>
     <title>Hosting Poll</title>
+    <style>      
+      /* The Modal (background) */
+      .modal {
+        display: none; /* Hidden by default */
+        position: fixed; /* Stay in place */
+        z-index: 1; /* Sit on top */
+        left: 0;
+        top: 0;
+        width: 100%; /* Full width */
+        height: 100%; /* Full height */
+        overflow: auto; /* Enable scroll if needed */
+        background-color: rgb(0,0,0); /* Fallback color */
+        background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+      }
+      
+      /* Modal Content */
+      .modal-content {
+        background-color: #fefefe;
+        margin: auto;
+        padding: 20px;
+        border: 1px solid #888;
+        overflow: auto;
+        width: 66%;
+      }
+      
+      /* The Close Button */
+      .close {
+        color: #aaaaaa;
+        float: right;
+        font-size: 28px;
+        font-weight: bold;
+      }
+      
+      .close:hover,
+      .close:focus {
+        color: #000;
+        text-decoration: none;
+        cursor: pointer;
+      }
+      </style>
   </head>
   <body>
     <h2>The Room Code is: {{ data.code }}</h2>
@@ -25,8 +65,55 @@
         }).then(response => {return response.json()})
         .then(data => console.log(data));
       }
+      var count = 2;
+      function plus(){
+        count++;
+        document.getElementById("options").innerHTML += '<input type="text" id="option'+ count +'"><br id="break'+count+'">';
+      }
+      function minus(){
+        if (count > 2) {
+          document.getElementById("option"+count).outerHTML = "";
+          document.getElementById("break"+count).outerHTML = "";
+          count--;
+        }  
+      }
     </script>
     <button onclick="ping()">Ping connected</button>
     <button onclick="endSession()">End Session</button>
+    <button id="modalBtn">Post a Poll</button>
+    <!-- The Modal -->
+    <div id="questionModal" class="modal">
+      <div class="modal-content">
+        <span class="close">&times;</span>
+        <h4>Enter Poll Question and options</h4>
+        <label for="male">Question:</label>
+        <input type="text" id="quest"><br>
+        <h4>Options</h4>
+        <input type="button" value="-" id="moins" onclick="minus()">
+        <input type="button" value="+" id="plus" onclick="plus()"><br>
+        <div id="options">
+          <input type="text" id="option1"><br>
+          <input type="text" id="option2"><br>
+        </div>
+        <button>Send Poll</button>
+      </div>
+    </div>
+    <script>
+      var modal = document.getElementById("questionModal");
+      var btn = document.getElementById("modalBtn");
+      var span = document.getElementsByClassName("close")[0];
+      btn.onclick = function() {
+        modal.style.display = "block";
+      }
+      span.onclick = function() {
+        modal.style.display = "none";
+      }
+      window.onclick = function(event) {
+        if (event.target == modal) {
+          modal.style.display = "none";
+        }
+      }
+    </script>
+
   </body>
 </html>
