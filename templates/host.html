@@ -65,6 +65,25 @@
         }).then(response => {return response.json()})
         .then(data => console.log(data));
       }
+      function sendPoll(){
+        question = document.getElementById('quest').value;
+
+        optionsChildren = document.getElementById("options").childNodes;
+        options = []
+        for (i = 0; i < optionsChildren.length; i++){
+          if (optionsChildren[i].nodeName=='INPUT'){
+            options.push(optionsChildren[i].value)
+          }
+        }
+        document.getElementById("currentQuestion").innerHTML = question;
+        fetch('/sendPoll', 
+        {
+          headers: {'Content-Type': 'application/json; charset=UTF-8'},
+          body: JSON.stringify(({code: code, question: question, options: options })),
+          method: 'POST',
+        }
+        );
+      }
       var count = 2;
       function plus(){
         count++;
@@ -95,7 +114,7 @@
           <input type="text" id="option1"><br>
           <input type="text" id="option2"><br>
         </div>
-        <button>Send Poll</button>
+        <button onclick="sendPoll()">Send Poll</button>
       </div>
     </div>
     <script>
@@ -114,6 +133,14 @@
         }
       }
     </script>
+    <br/>
+    <br/>
+    The current question is: <span id = "currentQuestion">No question yet!</span>
 
+    <!--
+      TODO: section here to show poll results
+        - add html elements
+        - add an event listener
+    -->
   </body>
 </html>

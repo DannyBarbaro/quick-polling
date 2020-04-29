@@ -41,3 +41,12 @@ def publish_hello():
     data = request.get_json()
     sse.publish({"message": "Hello!"}, type='greeting', channel=data.get("code"))
     return "Message sent!"
+
+@app.route('/sendPoll', methods=['POST'])
+def send_poll():
+    data = request.get_json()
+    code = data.get("code")
+    question = data.get("question")
+    options = data.get("options")
+    sse.publish({"question": question, "options": options}, type='question', channel=code)
+    return "Poll Submitted!"
