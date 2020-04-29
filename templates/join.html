@@ -2,10 +2,12 @@
 <html>
   <head>
     <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans&family=Playfair+Display&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans&display=swap" rel="stylesheet">
     <title>Join Poll</title>
   </head>
-  <body>
-    <h2>Enter the Room Code</h2>
+  <body id = "joinBody">
+    <h2 id = "enterHeading">Enter the Room Code</h2>
     <script>
       function validateForm() {
         let code = document.getElementById("roomCode").value;
@@ -26,6 +28,6 @@
       }
     </script>
     <input type="text" id="roomCode" name="roomCode">
-    <button onclick="validateForm()">Submit </button>
+    <button id = "joinButton" onclick="validateForm()">Submit </button>
   </body>
 </html>

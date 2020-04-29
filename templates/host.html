@@ -2,6 +2,8 @@
 <html>
   <head>
     <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans&family=Playfair+Display&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans&display=swap" rel="stylesheet">
     <title>Hosting Poll</title>
     <style>      
       /* The Modal (background) */
@@ -44,9 +46,9 @@
       }
       </style>
   </head>
-  <body>
-    <h2>The Room Code is: {{ data.code }}</h2>
-    <h4>Host IP: {{ data.host }}</h4>
+  <body id = "hostBody">
+    <h2 class = "hostTitle">The Room Code is: {{ data.code }}</h2>
+    <h4 class = "hostTitle">Host IP: {{ data.host }}</h4>
     <script>
       var code = '{{ data.code }}'
       function ping() {
@@ -98,9 +100,9 @@
         }  
       }
     </script>
-    <button onclick="ping()">Ping connected</button>
-    <button onclick="endSession()">End Session</button>
-    <button id="modalBtn">Post a Poll</button>
+    <button class= "hostButton" onclick="ping()">Ping connected</button>
+    <button class= "hostButton"  onclick="endSession()">End Session</button>
+    <button class= "hostButton" id="modalBtn">Post a Poll</button>
     <!-- The Modal -->
     <div id="questionModal" class="modal">
       <div class="modal-content">
@@ -115,7 +117,7 @@
           <input type="text" id="option1"><br>
           <input type="text" id="option2"><br>
         </div>
-        <button onclick="sendPoll()">Send Poll</button>
+        <button class= "hostButton" onclick="sendPoll()">Send Poll</button>
       </div>
     </div>
     <script>

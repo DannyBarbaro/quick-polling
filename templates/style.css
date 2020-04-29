@@ -1,14 +1,12 @@
 body{
-    background-color: #F5F5DC;
-    font-family: 'Manrope', sans-serif;
-    font-family: 'Roboto Mono', monospace;
+    font-family: 'Merriweather', serif;
+    font-family: 'Playfair Display', serif;
     text-align: center;
 }
 
-#answeringBody{
-    display: flex;
-    justify-content: center;
-    background-color: #FFB6C1;
+h1, h2{
+    letter-spacing: 1px;
+    font-size: xxx-large;
 }
 
 button{
@@ -21,11 +19,94 @@ button{
     text-decoration: none;
     display: inline-block;
     font-size: 14px;
-    font-family: 'Manrope', sans-serif;
-    font-family: 'Roboto Mono', monospace;
+    font-family: 'Raleway', sans-serif;
 }
+
+/* Index */
+#indexBody{
+    justify-content: center;
+    background-color: #E0FFFF;
+    vertical-align: middle;
+}
+
+#indexButton{
+    background-color: #48D1CC; 
+    border: none;
+    border-radius: 5px;
+    color: black;
+    padding: 10px 25px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 14px;
+    font-family: 'Josefin Sans', sans-serif;
+}
+
+#quickPolling{
+    color: #000080;
+    font-family: 'Merriweather', serif;
+    font-family: 'Playfair Display', serif;
+}
+
+
+/* Answering */
+#answeringBody{
+    display: flex;
+    justify-content: center;
+    background-color: #FFB6C1;
+}
+
 
 #question{
     font-size: xxx-large;
     padding-top: 20%;
+    color: #4d004d;
+}
+
+/* Join */
+#joinBody{
+    background-color: #ffffb3;
+}
+
+#enterHeading{
+    color: #cc8800;
+}
+
+#joinButton{
+    background-color: #ffcc66; 
+    border: none;
+    border-radius: 4px;
+    color: black;
+    padding: 10px 25px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 14px;
+    font-family: 'Josefin Sans', sans-serif;
+}
+
+/* Host */
+#hostBody{
+    background-color: #ccffcc;
+}
+
+.hostTitle{
+    color: 	 #003300;
+}
+
+.hostButton{
+    background-color: #4dff4d; 
+    border: none;
+    border-radius: 4px;
+    color: black;
+    padding: 10px 25px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 14px;
+    font-family: 'Josefin Sans', sans-serif;
+}
+
+#currentQuestion{
+    font-style: italic;
 }
