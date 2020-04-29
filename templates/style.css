@@ -1,0 +1,31 @@
+body{
+    background-color: #F5F5DC;
+    font-family: 'Manrope', sans-serif;
+    font-family: 'Roboto Mono', monospace;
+    text-align: center;
+}
+
+#answeringBody{
+    display: flex;
+    justify-content: center;
+    background-color: #FFB6C1;
+}
+
+button{
+    background-color: #DEB887; /* Green */
+    border: none;
+    border-radius: 12px;
+    color: black;
+    padding: 10px 25px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 14px;
+    font-family: 'Manrope', sans-serif;
+    font-family: 'Roboto Mono', monospace;
+}
+
+#question{
+    font-size: xxx-large;
+    padding-top: 20%;
+}
