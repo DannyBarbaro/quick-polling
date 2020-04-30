@@ -99,6 +99,31 @@
           count--;
         }  
       }
+      
+     var source = new EventSource(" {{ url_for('sse.stream', channel=data.code) }} ");
+     var answerCounts = {};
+     source.addEventListener('answers', function(event){
+      	var data = JSON.parse(event.data);
+	answers = data.options;
+      	document.getElementById("options").innerHTML = '';
+        for (i = 0; i< data.options.length; i++){
+		if(answers[i] in answerCounts){
+			answerCounts[answers[i]] = answerCounts[answers[i]] + 1;
+		}
+		else {
+			answerCounts[answers[i]] = 1;
+		}
+	}
+	for(key in answerCounts){
+		if(document.getElementById(key) != null){
+			document.getElementById(key).innerHTML = key + ' : ' + answerCounts[key] + ' votes';
+		}
+		else{
+			document.getElementById("results").innerHTML += '<div id = ' + key + '>' + key + ' : ' + answerCounts[key] + ' votes'  + '</div><br>';
+		}
+	}
+     }, false);
+
     </script>
     <button class= "hostButton" onclick="ping()">Ping connected</button>
     <button class= "hostButton"  onclick="endSession()">End Session</button>
@@ -139,11 +164,7 @@
     <br/>
     <br/>
     The current question is: <span id = "currentQuestion">No question yet!</span>
-
-    <!--
-      TODO: section here to show poll results
-        - add html elements
-        - add an event listener
-    -->
+	
+    <div id="results"></div>
   </body>
 </html>

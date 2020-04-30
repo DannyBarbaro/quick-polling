@@ -10,21 +10,43 @@
     <h2 id="question">Waiting for Questions...</h2>
     <div id="options"></div>
     <script>
-        var source = new EventSource("{{ url_for('sse.stream', channel=roomCode) }}");
+	var code = "";
+	var source = new EventSource("{{ url_for('sse.stream', channel=roomCode) }}");
         source.addEventListener('greeting', function(event) {
             var data = JSON.parse(event.data);
             alert("The server says " + data.message);
         }, false);
         source.addEventListener('question', function(event){
           var data = JSON.parse(event.data);
-          document.getElementById("question").innerText = data.question;
+          code = data.code;
+	  document.getElementById("question").innerText = data.question;
           document.getElementById("options").innerHTML = '';
           for (i = 0; i< data.options.length; i++){
-            document.getElementById("options").innerHTML += '<input type="checkbox" id="option'+ i +'">' + data.options[i] + '<br id="break'+i+'">';
+            document.getElementById("options").innerHTML += '<input type="checkbox" id="' + data.options[i] +'">' + data.options[i] + '<br id="break'+i+'">';
           }
-          document.getElementById("options").innerHTML += '<input type="submit" id="submit">'
+          document.getElementById("options").innerHTML += '<input type="submit" id="submit" onclick="returnPoll()">'
 
         }, false);
+	function returnPoll(){
+	  	var options = document.getElementById("options").childNodes;
+		var checkedOptions = [];
+        	for (i = 0; i < options.length; i++){
+          		if (options[i].id != 'submit' && options[i].checked == true){
+				checkedOptions.push(options[i].id);
+          		}
+        	}
+
+	  	fetch('/returnPoll',
+	  	{
+	    		headers: {'Content-Type': 'application/json; charset=UTF-8'},
+			body: JSON.stringify(({code: code, options: checkedOptions})),
+			method: 'POST',
+		}).then(function(data) {
+			alert("Survey Answered!");
+			window.location.href='/answering/'+code;	
+		});
+
+	}
       </script>
   </body>
 </html>

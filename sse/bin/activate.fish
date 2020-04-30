@@ -29,7 +29,7 @@ end
 # unset irrelevant variables
 deactivate nondestructive
 
-set -gx VIRTUAL_ENV "/mnt/c/Users/dongj/github/quick-polling/sse"
+set -gx VIRTUAL_ENV "/home/kyle/Documents/quick-polling-master/sse"
 
 set -gx _OLD_VIRTUAL_PATH $PATH
 set -gx PATH "$VIRTUAL_ENV/bin" $PATH

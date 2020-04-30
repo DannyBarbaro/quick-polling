@@ -48,5 +48,14 @@ def send_poll():
     code = data.get("code")
     question = data.get("question")
     options = data.get("options")
-    sse.publish({"question": question, "options": options}, type='question', channel=code)
+    sse.publish({"question": question, "options": options,"code":code}, type='question', channel=code)
     return "Poll Submitted!"
+
+@app.route('/returnPoll', methods=['POST'])
+def return_poll():
+    data = request.get_json()
+    options = data.get("options")
+    code = data.get("code")
+    sse.publish({"options": options, "code": code}, type='answers', channel=code)
+    return render_template("answering.html", roomCode=code)
+
